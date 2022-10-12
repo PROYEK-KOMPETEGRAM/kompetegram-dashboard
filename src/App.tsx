@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0);
-
+export const App = () => {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>KOMPETEGRAM</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <div className="p-6 shadow-lg rounded-lg bg-gray-100">
+      <h2 className="font-semibold text-transparent text-4xl mb-5 
+        bg-clip-text bg-gradient-to-r from-blue-300 
+        to-purple-900 "
+      >
+        Hello world!
+      </h2>
+      <p>
+        This is a simple hero unit, a simple jumbotron-style component for calling extra attention
+        to featured content or information.
       </p>
+      <hr className="my-6 border-gray-300" />
+      <p>
+        It uses utility class for typography and spacing to space content out within the larger
+        container.
+      </p>
+      <button
+        type="button"
+        className="inline-block px-6 py-2.5 mt-4 bg-blue-600 text-white 
+        font-medium text-xs leading-tight uppercase rounded shadow-md 
+        hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
+        focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg 
+        transition duration-150 ease-in-out"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+      >
+        Learn more
+      </button>
     </div>
   )
 }
 
-export default App
