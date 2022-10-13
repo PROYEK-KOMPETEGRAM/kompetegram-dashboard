@@ -1,8 +1,8 @@
-import { Login } from "@auth/pages/Login"
+import { MembersPage } from "./members/pages/MembersPage"
 
 export const App = () => {
   return (
-    <Login/>
+    <MembersPage />
   )
 }
 

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Button } from "../components/Button/Button";
-import Logo from "../assets/logo.png";
+import Logo from "../../commons/assets/logo.png";
 import { Error } from "../components/Error/Error";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -17,7 +17,7 @@ const schema = yup.object({
   password: yup.string().required("Kata sandi wajib diisi")
 }).required();
 
-export const Login = () => {
+export const LoginPage = () => {
   const methods = useForm<ILoginInput>({
     resolver: yupResolver(schema)
   });
