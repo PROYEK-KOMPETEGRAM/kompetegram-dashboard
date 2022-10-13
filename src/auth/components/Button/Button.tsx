@@ -2,7 +2,7 @@ interface ButtonProps {
   title: string
 }
 
-export const Button = (props: ButtonProps,) => {
+export const Button = (props: ButtonProps) => {
   return (
     <button
       type="submit"
