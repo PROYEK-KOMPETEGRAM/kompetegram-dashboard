@@ -1,7 +1,7 @@
 {
   "name": "kompetegram-dashboard",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -12,10 +12,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.37.0",
     "react-router-dom": "^6.4.2",
-    "tw-elements": "^1.0.0-alpha12"
+    "tw-elements": "^1.0.0-alpha12",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
