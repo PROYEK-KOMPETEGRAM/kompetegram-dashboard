@@ -1,33 +1,73 @@
+import { useEffect } from "react"
+import { Button } from "../components/Button/Button";
+import Logo from "../assets/logo.png";
+import { Error } from "../components/Error/Error";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { TextInput } from "../components/TextInput/TextInput";
+
+interface ILoginInput {
+  username: string 
+  password: string
+}
+
+const schema = yup.object({
+  username: yup.string().required("Username wajib diisi"),
+  password: yup.string().required("Kata sandi wajib diisi")
+}).required();
+
 export const Login = () => {
+  const methods = useForm<ILoginInput>({
+    resolver: yupResolver(schema)
+  });
+
+  const {register, handleSubmit, formState:{ errors }} = methods;
+
+  const onSubmit = (values: ILoginInput) => {
+    console.log(values);
+  }
+
+  useEffect(() => {
+    document.body.classList.add('bg-gray-800');
+  },[])
+
   return (
-    <div className="p-6 shadow-lg rounded-lg bg-gray-100">
-      <h2 className="font-semibold text-transparent text-4xl mb-5 
-        bg-clip-text bg-gradient-to-r from-blue-300 
-        to-purple-900 "
-      >
-        Hello world!
-      </h2>
-      <p>
-        This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-        to featured content or information.
-      </p>
-      <hr className="my-6 border-gray-300" />
-      <p>
-        It uses utility class for typography and spacing to space content out within the larger
-        container.
-      </p>
-      <button
-        type="button"
-        className="inline-block px-6 py-2.5 mt-4 bg-blue-600 text-white 
-        font-medium text-xs leading-tight uppercase rounded shadow-md 
-        hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
-        focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg 
-        transition duration-150 ease-in-out"
-        data-mdb-ripple="true"
-        data-mdb-ripple-color="light"
-      >
-        Learn more
-      </button>
+    <div className="flex justify-center items-center h-screen w-100">
+      <div className="shadow-lg rounded-2xl bg-white sm:w-3/4 
+        md:w-1/3 text-center mx-4">
+        <div className="p-7 sm:p-10">
+          <div className="mt-2 mb-2">
+            <div className="flex justify-center">
+              <img className="w-3/4 sm:w-2/3" src={Logo} />
+            </div>
+          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="py-6">
+              <TextInput
+                type="text"
+                placeholder="Username"
+                showError={errors.username}
+                {...register('username')}
+              />
+              {errors.username && (
+                <Error title={errors.username?.message}/>
+              )}
+              <TextInput
+                type="password"
+                placeholder="Kata Sandi"
+                showError={errors.password}
+                {...register('password')}
+              />
+              {errors.password && (
+                <Error title={errors.password?.message}/>
+              )}
+            </div>
+            <Button title="MASUK AKUN"/>
+          </form>
+          <hr className="my-6 border-gray-300" />
+        </div>
+      </div>
     </div>
   )
 }
