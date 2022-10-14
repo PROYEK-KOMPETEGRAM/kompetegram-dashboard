@@ -1,9 +1,9 @@
 export const Navbar = () => {
   return (
     <nav className="w-full flex flex-wrap items-center
-      justify-between py-4 shadow-sm bg-white text-gray-500 
+      justify-between py-4 shadow-sm bg-gray-800 text-gray-500 
       hover:text-gray-700 focus:text-gray-700 navbar 
-      navbar-expand-lg navbar-light sticky top-0"
+      navbar-expand-lg navbar-light fixed md:sticky top-0"
     >
       <div className="container-fluid w-full flex flex-wrap 
         items-center justify-between px-6 md:px-16"
@@ -111,7 +111,7 @@ export const Navbar = () => {
           </ul>
         </div>
         <div className="dropdown relative">
-          <a className="dropdown-toggle flex items-center hidden-arrow" href="#" id="dropdownMenuButton2" role="button"
+          <a className="dropdown-toggle text-gray-50 flex items-center hidden-arrow" href="#" id="dropdownMenuButton2" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             Admin Kompetegram &nbsp;
             <img src="https://mdbootstrap.com/img/new/avatars/2.jpg" className="rounded-full"
