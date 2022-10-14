@@ -8,6 +8,8 @@ import { MainContent } from "@/commons/layouts/MainContent/MainContent";
 import { useEffect } from "react";
 import { SearchBox } from "../components/SearchBox/SearchBox";
 import { Button } from "../components/Button/Button";
+import { TablePagination } from "../components/TablePagination/TablePagination";
+import { TableDropdown } from "../components/TableDropdown/TableDropdown";
 
 export const MembersPage = () => {
   useEffect(() => {
@@ -26,17 +28,17 @@ export const MembersPage = () => {
         <MainContent>
           <DashboardHeader/>
           <CardWrapper>
-            <div className="flex flex-row justify-between items-center p-5">
-              <h1 className="text-white">
-                <SearchBox/>
-              </h1>
-              <h1 className="text-white">
-                <Button/>
-              </h1>
+            <div className="flex flex-col sm:flex-row justify-between items-center p-5">
+              <SearchBox/>
+              <Button/>
             </div>
           </CardWrapper>
           <CardWrapper>
             <Table/>
+            <div className="flex flex-col sm:flex-row justify-between items-center p-5">
+              <TableDropdown/>
+              <TablePagination/>
+            </div>
           </CardWrapper>
         </MainContent>
       </div>

@@ -31,13 +31,19 @@ export const Table = () => {
                 <tr className="bg-gray-700 border-b border-black">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-50">1</td>
                   <td className="text-sm text-gray-50 font-open-sans font-medium px-6 py-4 whitespace-nowrap uppercase">
-                    Mark
+                    ADMIN KOMPETEGRAM
                   </td>
                   <td className="text-sm text-gray-50 font-light px-6 py-4 whitespace-nowrap uppercase">
-                    Otto
+                    220000
                   </td>
                   <td className="text-sm text-gray-50 font-light px-6 py-4 whitespace-nowrap uppercase">
-                    @mdo
+                    RPL
+                  </td>
+                  <td className="text-sm text-gray-50 font-light px-6 py-4 whitespace-nowrap uppercase">
+                    VERIFIED
+                  </td>
+                  <td className="text-sm text-gray-50 font-light px-6 py-4 whitespace-nowrap uppercase">
+                    LIHAT
                   </td>
                 </tr>
               </tbody>
