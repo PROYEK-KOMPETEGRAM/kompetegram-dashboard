@@ -6,6 +6,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { TextInput } from "../components/TextInput/TextInput";
+import { useNavigate } from "react-router-dom";
+import { useStateContext } from "@/commons/context/provider";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { loginUser } from "../api/auth";
+import { setAccessToken, setRefreshToken } from "@/commons/helpers/utils";
+import { getCurrentUser } from "@/commons/api/common";
 
 interface ILoginInput {
   username: string 
@@ -23,9 +29,35 @@ export const LoginPage = () => {
   });
 
   const {register, handleSubmit, formState:{ errors }} = methods;
+  const navigate = useNavigate();
+  const stateContext = useStateContext();
+
+  const query = useQuery(["user"], getCurrentUser, {
+    enabled: false,
+    select: (data: any) => data.data,
+    retry: 1,
+    onSuccess: (data: any) => {
+      stateContext.dispatch({
+        type: "SET_USER",
+        payload: data,
+      });
+      navigate('/dashboard/members')
+    }
+  })
+
+  const { mutate } = useMutation((data: ILoginInput) => loginUser(data), {
+    onSuccess(response) {
+      setAccessToken(response.data.accessToken);
+      setRefreshToken(response.data.refreshToken);
+      query.refetch();
+    },
+    onError(error: any) {
+      console.log('Error : ', error.message);
+    }
+  })
 
   const onSubmit = (values: ILoginInput) => {
-    console.log(values);
+    mutate(values);
   }
 
   useEffect(() => {

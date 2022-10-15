@@ -4,6 +4,10 @@ interface BaseResponse {
   message: string
 }
 
+interface CurrentUserResponse extends BaseResponse {
+  data: User
+}
+
 interface User {
   _id: string 
   username: string
@@ -11,5 +15,6 @@ interface User {
 
 export type {
   BaseResponse,
-  User
+  User,
+  CurrentUserResponse
 }
