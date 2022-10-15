@@ -1,7 +1,7 @@
 {
   "name": "kompetegram-dashboard",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",
+    "@tanstack/react-query": "^4.12.0",
+    "@tanstack/react-query-devtools": "^4.12.0",
+    "axios": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.37.0",

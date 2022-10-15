@@ -10,10 +10,15 @@ import { SearchBox } from "../components/SearchBox/SearchBox";
 import { Button } from "../components/Button/Button";
 import { TablePagination } from "../components/TablePagination/TablePagination";
 import { TableDropdown } from "../components/TableDropdown/TableDropdown";
+import { useStateContext } from "@/commons/context/provider";
 
 export const MembersPage = () => {
+  const stateContext = useStateContext();
+  const user = stateContext.state.user;
+
   useEffect(() => {
     document.body.classList.add('bg-gray-900');
+    console.log(user);
   },[])
   
   return (
