@@ -5,20 +5,39 @@ import { Sidebar } from "@/commons/components/Sidebar/Sidebar";
 import Logo from "../../commons/assets/logo-ktg.svg";
 import { Table } from "../components/Table/Table";
 import { MainContent } from "@/commons/layouts/MainContent/MainContent";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SearchBox } from "../components/SearchBox/SearchBox";
 import { Button } from "../components/Button/Button";
 import { TablePagination } from "../components/TablePagination/TablePagination";
 import { TableDropdown } from "../components/TableDropdown/TableDropdown";
-import { useStateContext } from "@/commons/context/provider";
+import { mockColumn, mockData } from "../mocks/data";
+import { getMembersData } from "../api/members";
+import { useQuery } from "@tanstack/react-query";
 
 export const MembersPage = () => {
-  const stateContext = useStateContext();
-  const user = stateContext.state.user;
+  const [tableAvailable, setTableAvailable] = useState<boolean>(false);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [keyword, setKeyword] = useState('');
+
+  const query = useQuery(["members",page,limit,keyword], 
+    () => getMembersData(page, limit, keyword), {
+      enabled: false,
+      select: (data: any) => data,
+      retry: 1,
+      onSuccess: (data: any) => {
+        setData(data.data);
+        setTableAvailable(true);
+      },
+      onError: (error: any) => {
+        setTableAvailable(false);
+      }
+  })
 
   useEffect(() => {
     document.body.classList.add('bg-gray-900');
-    console.log(user);
+    query.refetch();
   },[])
   
   return (
@@ -39,7 +58,11 @@ export const MembersPage = () => {
             </div>
           </CardWrapper>
           <CardWrapper>
-            <Table/>
+            <Table 
+              show={tableAvailable} 
+              columns={mockColumn}
+              data={data}
+            />
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
               <TableDropdown/>
               <TablePagination/>

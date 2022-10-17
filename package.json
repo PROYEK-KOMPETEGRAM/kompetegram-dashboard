@@ -1,7 +1,7 @@
 {
   "name": "kompetegram-dashboard",
   "private": true,
-  "version": "0.4.0",
+  "version": "0.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.37.0",
     "react-router-dom": "^6.4.2",
+    "react-table": "^7.8.0",
     "tw-elements": "^1.0.0-alpha12",
     "yup": "^0.32.11"
   },
@@ -33,6 +34,7 @@
     "@types/node": "^18.8.5",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/react-table": "^7.7.12",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "@vitejs/plugin-react": "^2.1.0",
