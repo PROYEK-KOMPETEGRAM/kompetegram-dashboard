@@ -14,14 +14,13 @@ export const Navbar = () => {
       payload: null,
     });
     navigate("/login");
-    console.log('CLicked');
   }
 
   return (
     <nav className="w-full flex flex-wrap items-center
       justify-between py-4 shadow-sm bg-gray-800 text-gray-500 
       hover:text-gray-700 focus:text-gray-700 navbar 
-      navbar-expand-lg navbar-light fixed md:sticky top-0"
+      navbar-expand-lg navbar-light fixed md:sticky top-0 z-50"
     >
       <div className="container-fluid w-full flex flex-wrap 
         items-center justify-between px-6 md:px-16"

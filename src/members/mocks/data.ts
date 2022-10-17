@@ -14,7 +14,7 @@ const mockData: DataTable[] = [
 const mockColumn: ColumnTable[] = [
   {
     Header: 'No',
-    accessor: 'no'
+    accessor: (_row: any, i : number) => i + 1
   },
   {
     Header: 'NIM',

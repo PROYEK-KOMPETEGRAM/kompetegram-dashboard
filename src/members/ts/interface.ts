@@ -1,3 +1,5 @@
+import { BaseResponse } from "@/commons/ts/interface"
+
 interface TableProps {
   show: boolean
   columns: any 
@@ -13,13 +15,18 @@ interface DataTable {
   __v: number
 }
 
+interface MembersResponse extends BaseResponse {
+  data: DataTable[]
+}
+
 interface ColumnTable {
   Header: string 
-  accessor: string
+  accessor: string | any
 }
 
 export type {
   TableProps,
   DataTable,
-  ColumnTable
+  ColumnTable,
+  MembersResponse
 }
