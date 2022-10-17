@@ -5,14 +5,16 @@ import { Sidebar } from "@/commons/components/Sidebar/Sidebar";
 import Logo from "../../commons/assets/logo-ktg.svg";
 import { Table } from "../components/Table/Table";
 import { MainContent } from "@/commons/layouts/MainContent/MainContent";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SearchBox } from "../components/SearchBox/SearchBox";
 import { Button } from "../components/Button/Button";
 import { TablePagination } from "../components/TablePagination/TablePagination";
 import { TableDropdown } from "../components/TableDropdown/TableDropdown";
 import { useStateContext } from "@/commons/context/provider";
+import { mockColumn, mockData } from "../mocks/data";
 
 export const MembersPage = () => {
+  const [tableAvailable, setTableAvailable] = useState<boolean>(false);
   const stateContext = useStateContext();
   const user = stateContext.state.user;
 
@@ -39,7 +41,11 @@ export const MembersPage = () => {
             </div>
           </CardWrapper>
           <CardWrapper>
-            <Table/>
+            <Table 
+              show={tableAvailable} 
+              columns={mockColumn}
+              data={mockData}
+            />
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
               <TableDropdown/>
               <TablePagination/>
