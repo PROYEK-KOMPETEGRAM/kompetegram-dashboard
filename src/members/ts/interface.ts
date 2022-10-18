@@ -24,9 +24,14 @@ interface ColumnTable {
   accessor: string | any
 }
 
+interface SearchProps {
+  onSearch: (keyword: string) => void
+}
+
 export type {
   TableProps,
   DataTable,
   ColumnTable,
-  MembersResponse
+  MembersResponse,
+  SearchProps
 }

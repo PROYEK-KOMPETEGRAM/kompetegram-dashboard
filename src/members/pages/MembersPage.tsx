@@ -35,10 +35,15 @@ export const MembersPage = () => {
       }
   })
 
+  const getSearchKeyword = (text: string) => {
+    setKeyword(text);
+
+  }
+
   useEffect(() => {
     document.body.classList.add('bg-gray-900');
     query.refetch();
-  },[])
+  },[keyword])
   
   return (
     <div className="grid md:grid-cols-4 lg:grid-cols-5">
@@ -53,7 +58,7 @@ export const MembersPage = () => {
           <DashboardHeader/>
           <CardWrapper>
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
-              <SearchBox/>
+              <SearchBox onSearch={getSearchKeyword} />
               <Button/>
             </div>
           </CardWrapper>
