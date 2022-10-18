@@ -27,7 +27,7 @@ export const Table = ({ show, columns, data }: TableProps) => {
                         {...column.getHeaderProps()}
                         scope="col" 
                         className="text-sm font-open-sans font-semibold text-gray-300 
-                          px-6 py-4 uppercase"
+                          px-4 py-4 uppercase"
                       >
                         {column.render("Header")}
                       </th>
@@ -46,7 +46,7 @@ export const Table = ({ show, columns, data }: TableProps) => {
                         {row.cells.map((cell) => (
                           <td 
                             {...cell.getCellProps()}
-                            className="text-sm text-gray-50 font-open-sans font-medium px-6 
+                            className="text-xs text-gray-50 font-open-sans font-medium px-4 
                               py-4 whitespace-nowrap uppercase"
                           >
                             {cell.render("Cell")}

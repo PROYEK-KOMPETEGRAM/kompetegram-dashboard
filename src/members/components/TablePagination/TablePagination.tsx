@@ -1,62 +1,76 @@
-export const TablePagination = () => {
+import { ArrowButtonProps, TablePaginationProps } from "@/members/ts/interface";
+import { useEffect, useState } from "react";
+
+export const TablePagination = (props: TablePaginationProps) => {
+  const [prev, setPrev] = useState(true);
+  const [next, setNext] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const reducePage = () => {
+    props.onClick(currentPage - 1);
+    setCurrentPage(currentPage - 1);
+  }
+
+  const increasePage = () => {
+    props.onClick(currentPage + 1);
+    setCurrentPage(currentPage + 1);
+  } 
+
+  useEffect(() => {
+    setNext(true);
+    setPrev(true);
+    
+    if (currentPage == props.lastPage) {
+      setNext(false);
+    }
+
+    if (currentPage == 1) {
+      setPrev(false);
+    }
+  }, [currentPage])
+
   return (
     <div className="flex justify-center mt-4 sm:mt-0">
       <nav aria-label="Page navigation example">
         <ul className="flex list-style-none">
-          <li className="page-item disabled">
-            <a
-              className="page-link relative font-open-sans block py-1.5 px-3 border-0 
-              bg-transparent outline-none transition-all duration-300 text-gray-50 
-              pointer-events-none focus:shadow-none"
-              href="#"
-              tabIndex={-1}
-              aria-disabled="true"
-            >
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li className="page-item">
-            <a
-              className="page-link relative font-open-sans block rounded-md py-1.5 px-3 
-              border-0 bg-transparent outline-none transition-all duration-300 text-gray-50 
-              hover:text-gray-800 hover:bg-blue-100 focus:shadow-none"
-              href="#"
-            >
-              1
-            </a>
-          </li>
+          <ArrowButton enable={prev} onClick={reducePage} >
+            <span aria-hidden="true">&laquo;</span>
+          </ArrowButton>
           <li className="page-item active">
             <a
               className="page-link relative font-open-sans block rounded-md py-1.5 px-3 
               border-0 bg-blue-500 outline-none transition-all duration-300 text-white 
-              hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-              href="#"
+              hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md mx-2"
             >
-              2 <span className="visually-hidden">(current)</span>
+              {currentPage}<span className="visually-hidden">(current)</span>
             </a>
           </li>
-          <li className="page-item">
-            <a
-              className="page-link relative font-open-sans block rounded-md py-1.5 px-3 
-              border-0 bg-transparent outline-none transition-all duration-300 text-gray-50 
-              hover:text-gray-800 hover:bg-blue-100 focus:shadow-none"
-              href="#"
-            >
-              3
-            </a>
-          </li>
-          <li className="page-item">
-            <a
-              className="page-link relative font-open-sans block rounded-md py-1.5 px-3 
-              border-0 bg-transparent outline-none transition-all duration-300 text-gray-50 
-              hover:text-gray-800 hover:bg-blue-100 focus:shadow-none"
-              href="#"
-            >
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
+          <ArrowButton enable={next} onClick={increasePage} >
+            <span aria-hidden="true">&raquo;</span>
+          </ArrowButton>
         </ul>
       </nav>
     </div>
   );
 };
+
+const ArrowButton = (props: ArrowButtonProps) => {
+  const style = props.enable ? "hover:text-gray-800 hover:bg-blue-100" : "pointer-events-none";
+
+  const handleClick = () => {
+    props.onClick();
+  }
+
+  return (
+    <li className={`page-item ${props.enable ? '' : 'disabled'}`}>
+      <div
+        className={"page-link relative font-open-sans block rounded-md py-1.5 px-3 " + 
+        "border-0 bg-transparent outline-none transition-all duration-300 text-gray-50 " + 
+        "focus:shadow-none cursor-pointer " + style}
+        onClick={handleClick}
+      >
+        {props.children}
+      </div>
+    </li>
+  );
+}

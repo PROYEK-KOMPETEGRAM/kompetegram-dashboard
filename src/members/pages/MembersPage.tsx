@@ -17,9 +17,10 @@ import { useQuery } from "@tanstack/react-query";
 export const MembersPage = () => {
   const [tableAvailable, setTableAvailable] = useState<boolean>(false);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState('1');
+  const [page, setPage] = useState(1);
   const [limit, setLimit] = useState('10');
   const [keyword, setKeyword] = useState('');
+  const [dataSize, setDataSize] = useState(0);
 
   const query = useQuery(["members",page,limit,keyword], 
     () => getMembersData(page, limit, keyword), {
@@ -29,6 +30,7 @@ export const MembersPage = () => {
       onSuccess: (data: any) => {
         setData(data.data);
         setTableAvailable(true);
+        setDataSize(data.meta.totalItems);
       },
       onError: (error: any) => {
         setTableAvailable(false);
@@ -43,11 +45,15 @@ export const MembersPage = () => {
     setLimit(size);
   }
 
+  const getPagination = (position: number) => {
+    setPage(position);
+  }
+
   useEffect(() => {
     document.body.classList.add('bg-gray-900');
     query.refetch();
-  },[keyword,limit])
-  
+  },[keyword,limit,page]);
+
   return (
     <div className="grid md:grid-cols-4 lg:grid-cols-5">
       <Sidebar>
@@ -72,8 +78,8 @@ export const MembersPage = () => {
               data={data}
             />
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
-              <TableDropdown onChange={getRowSize} />
-              <TablePagination/>
+              <TableDropdown onChange={getRowSize} rowSize={dataSize} />
+              <TablePagination onClick={getPagination} lastPage={10} />
             </div>
           </CardWrapper>
         </MainContent>

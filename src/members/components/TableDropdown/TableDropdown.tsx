@@ -25,11 +25,14 @@ export const TableDropdown = (props: DropdownProps) => {
           ref={rowSizeRef}
           onChange={handleChange}
         >
-            {rowSize.map((item) => (
-              <option value={item} selected>{item} Data</option>
-            ))}
+          {rowSize.map((item) => (
+            <option value={item}>{item} Data</option>
+          ))}
         </select>
       </div>
+      <p className="text-xs sm:text-sm font-open-sans text-white font-regular px-4">
+        Terdapat {props.rowSize} Data
+      </p>
     </div>
   );
 }

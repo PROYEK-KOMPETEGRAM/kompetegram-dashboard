@@ -30,6 +30,18 @@ interface SearchProps {
 
 interface DropdownProps {
   onChange: (size: string) => void
+  rowSize?: string | number
+}
+
+interface ArrowButtonProps {
+  enable: boolean 
+  children: JSX.Element
+  onClick: () => void
+}
+
+interface TablePaginationProps {
+  lastPage: number 
+  onClick: (page: number) => void
 }
 
 export type {
@@ -38,5 +50,7 @@ export type {
   ColumnTable,
   MembersResponse,
   SearchProps,
-  DropdownProps
+  DropdownProps,
+  ArrowButtonProps,
+  TablePaginationProps
 }
