@@ -17,8 +17,8 @@ import { useQuery } from "@tanstack/react-query";
 export const MembersPage = () => {
   const [tableAvailable, setTableAvailable] = useState<boolean>(false);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState('1');
+  const [limit, setLimit] = useState('10');
   const [keyword, setKeyword] = useState('');
 
   const query = useQuery(["members",page,limit,keyword], 
@@ -37,13 +37,16 @@ export const MembersPage = () => {
 
   const getSearchKeyword = (text: string) => {
     setKeyword(text);
+  }
 
+  const getRowSize = (size: string) => {
+    setLimit(size);
   }
 
   useEffect(() => {
     document.body.classList.add('bg-gray-900');
     query.refetch();
-  },[keyword])
+  },[keyword,limit])
   
   return (
     <div className="grid md:grid-cols-4 lg:grid-cols-5">
@@ -69,7 +72,7 @@ export const MembersPage = () => {
               data={data}
             />
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
-              <TableDropdown/>
+              <TableDropdown onChange={getRowSize} />
               <TablePagination/>
             </div>
           </CardWrapper>

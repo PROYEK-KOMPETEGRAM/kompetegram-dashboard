@@ -28,10 +28,15 @@ interface SearchProps {
   onSearch: (keyword: string) => void
 }
 
+interface DropdownProps {
+  onChange: (size: string) => void
+}
+
 export type {
   TableProps,
   DataTable,
   ColumnTable,
   MembersResponse,
-  SearchProps
+  SearchProps,
+  DropdownProps
 }
