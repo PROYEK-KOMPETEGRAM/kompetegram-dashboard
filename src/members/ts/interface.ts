@@ -24,9 +24,33 @@ interface ColumnTable {
   accessor: string | any
 }
 
+interface SearchProps {
+  onSearch: (keyword: string) => void
+}
+
+interface DropdownProps {
+  onChange: (size: string) => void
+  rowSize?: string | number
+}
+
+interface ArrowButtonProps {
+  enable: boolean 
+  children: JSX.Element
+  onClick: () => void
+}
+
+interface TablePaginationProps {
+  lastPage: number 
+  onClick: (page: number) => void
+}
+
 export type {
   TableProps,
   DataTable,
   ColumnTable,
-  MembersResponse
+  MembersResponse,
+  SearchProps,
+  DropdownProps,
+  ArrowButtonProps,
+  TablePaginationProps
 }
