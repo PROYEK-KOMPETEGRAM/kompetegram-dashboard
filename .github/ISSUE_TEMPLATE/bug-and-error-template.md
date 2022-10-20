@@ -1,6 +1,6 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
+name: Bug and Error template
+about: Template for reporting bug, error or abnormal behaviour that need to solve
 title: "[BUG]"
 labels: bug
 assignees: ''
