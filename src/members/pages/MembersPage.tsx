@@ -21,6 +21,7 @@ export const MembersPage = () => {
   const [limit, setLimit] = useState('10');
   const [keyword, setKeyword] = useState('');
   const [dataSize, setDataSize] = useState(0);
+  const [lastPage, setLastPage] = useState(0);
 
   const query = useQuery(["members",page,limit,keyword], 
     () => getMembersData(page, limit, keyword), {
@@ -49,9 +50,15 @@ export const MembersPage = () => {
     setPage(position);
   }
 
+  const getLastPage = (size: any, limit: any) => {
+    const last = Math.ceil(size / limit);
+    setLastPage(last);
+  }
+
   useEffect(() => {
     document.body.classList.add('bg-gray-900');
     query.refetch();
+    getLastPage(dataSize, limit);
   },[keyword,limit,page]);
 
   return (
@@ -79,7 +86,7 @@ export const MembersPage = () => {
             />
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
               <TableDropdown onChange={getRowSize} rowSize={dataSize} />
-              <TablePagination onClick={getPagination} lastPage={10} />
+              <TablePagination onClick={getPagination} lastPage={lastPage} />
             </div>
           </CardWrapper>
         </MainContent>
