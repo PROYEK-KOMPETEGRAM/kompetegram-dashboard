@@ -40,7 +40,8 @@ interface ArrowButtonProps {
 }
 
 interface TablePaginationProps {
-  lastPage: number 
+  lastPage: number
+  reset: boolean 
   onClick: (page: number) => void
 }
 

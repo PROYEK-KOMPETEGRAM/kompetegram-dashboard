@@ -15,7 +15,8 @@ import { getMembersData } from "../api/members";
 import { useQuery } from "@tanstack/react-query";
 
 export const MembersPage = () => {
-  const [tableAvailable, setTableAvailable] = useState<boolean>(false);
+  const [tableAvailable, setTableAvailable] = useState(false);
+  const [resetPagination, setResetPagination] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState('10');
@@ -55,11 +56,25 @@ export const MembersPage = () => {
     setLastPage(last);
   }
 
+  /**
+   * This useEffect run to refetch data
+   * after searching, changing row size, and changing page
+   * Then also get the last page properties from response API
+   */
   useEffect(() => {
     document.body.classList.add('bg-gray-900');
     query.refetch();
     getLastPage(dataSize, limit);
   },[keyword,limit,page]);
+
+  /**
+   * This useEffect only trigger after changing row size and searching
+   * So that, it will keep update the value (boolean)
+   * and send props to TabelPagination
+   */
+  useEffect(() => {
+    setResetPagination(!resetPagination);
+  }, [keyword,limit])
 
   return (
     <div className="grid md:grid-cols-4 lg:grid-cols-5">
@@ -86,7 +101,11 @@ export const MembersPage = () => {
             />
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
               <TableDropdown onChange={getRowSize} rowSize={dataSize} />
-              <TablePagination onClick={getPagination} lastPage={lastPage} />
+              <TablePagination 
+                onClick={getPagination} 
+                lastPage={lastPage}
+                reset={resetPagination} 
+              />
             </div>
           </CardWrapper>
         </MainContent>

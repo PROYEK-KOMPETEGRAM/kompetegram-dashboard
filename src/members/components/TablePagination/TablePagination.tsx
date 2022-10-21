@@ -16,6 +16,11 @@ export const TablePagination = (props: TablePaginationProps) => {
     setCurrentPage(currentPage + 1);
   } 
 
+  /**
+   * This useEffect will trigger everytime currentPage is changing
+   * If current page is last page, disable next button
+   * If current page is first page, disable previous button
+   */
   useEffect(() => {
     setNext(true);
     setPrev(true);
@@ -28,6 +33,16 @@ export const TablePagination = (props: TablePaginationProps) => {
       setPrev(false);
     }
   }, [currentPage])
+
+  /**
+   * This useEffect will trigger everytime reset props value is changing
+   * So that, changing row size will reset current number to 1
+   * and also send an API to page 1
+   */
+  useEffect(() => {
+    setCurrentPage(1);
+    props.onClick(1);
+  }, [props.reset])
 
   return (
     <div className="flex justify-center mt-4 sm:mt-0">
