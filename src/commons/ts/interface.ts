@@ -13,8 +13,14 @@ interface User {
   username: string
 }
 
+interface SpinnerProps {
+  children?: JSX.Element
+  size: string
+}
+
 export type {
   BaseResponse,
   User,
-  CurrentUserResponse
+  CurrentUserResponse,
+  SpinnerProps
 }

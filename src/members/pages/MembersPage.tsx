@@ -10,7 +10,7 @@ import { SearchBox } from "../components/SearchBox/SearchBox";
 import { Button } from "../components/Button/Button";
 import { TablePagination } from "../components/TablePagination/TablePagination";
 import { TableDropdown } from "../components/TableDropdown/TableDropdown";
-import { getMembersData } from "../api/members";
+import { exportMembersData, getMembersData } from "../api/members";
 import { useQuery } from "@tanstack/react-query";
 
 export const MembersPage = () => {
@@ -69,6 +69,20 @@ export const MembersPage = () => {
       }
   })
 
+  const csv = useQuery(["csv"], exportMembersData, {
+    enabled: false,
+    select: (data: any) => data,
+    retry: 1,
+    onSuccess: (data: any) => {
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Data-Members-Batch3-${new Date().getTime()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+    }
+  })
+
   const getSearchKeyword = (text: string) => {
     setKeyword(text);
   }
@@ -84,6 +98,10 @@ export const MembersPage = () => {
   const getLastPage = (size: any, limit: any) => {
     const last = Math.ceil(size / limit);
     setLastPage(last);
+  }
+
+  const exportData = () => {
+    csv.refetch();
   }
 
   /**
@@ -120,7 +138,7 @@ export const MembersPage = () => {
           <CardWrapper>
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
               <SearchBox onSearch={getSearchKeyword} />
-              <Button/>
+              <Button onClick={exportData} />
             </div>
           </CardWrapper>
           <CardWrapper>

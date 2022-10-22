@@ -14,6 +14,15 @@ const getMembersData = async (page?: any, limit?: any, keyword?: any) => {
   return response.data;
 }
 
+const exportMembersData = async () => {
+  const response = await apiService.get("/members/export", {
+    responseType: 'blob'
+  });
+
+  return response.data;
+}
+
 export {
-  getMembersData
+  getMembersData,
+  exportMembersData
 }

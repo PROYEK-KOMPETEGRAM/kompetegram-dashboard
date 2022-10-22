@@ -46,6 +46,10 @@ interface TablePaginationProps {
   onClick: (page: number) => void
 }
 
+interface ButtonProps {
+  onClick: () => void
+}
+
 export type {
   TableProps,
   DataTable,
@@ -54,5 +58,6 @@ export type {
   SearchProps,
   DropdownProps,
   ArrowButtonProps,
-  TablePaginationProps
+  TablePaginationProps,
+  ButtonProps
 }
