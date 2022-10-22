@@ -1,14 +1,20 @@
-export const Button = () => {
+import { ButtonProps } from "@/members/ts/interface";
+
+export const Button = (props: ButtonProps) => {
+  const handleClick = () => {
+    props.onClick();
+  }
+
   return (
     <button type="submit"
       className="inline-block px-6 py-3 bg-blue-500 text-white 
       font-semibold text-xs leading-tight uppercase shadow-md 
-      hover:bg-blue-700 hover:shadow-lg focus:bg-gray-700 focus:shadow-lg 
-      focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg 
+      hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-0  
       transition duration-150 ease-in-out w-full sm:w-fit font-open-sans
       rounded-lg mt-4 sm:mt-0"
       data-mdb-ripple="true"
       data-mdb-ripple-color="light"
+      onClick={handleClick}
     >
       <div className="flex flex-row justify-center">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" className="w-3 h-3 mr-3" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
