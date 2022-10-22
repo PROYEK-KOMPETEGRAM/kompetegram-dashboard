@@ -20,6 +20,7 @@ interface MembersResponse extends BaseResponse {
 }
 
 interface ColumnTable {
+  hello?: string
   Header: string 
   accessor: string | any
 }
@@ -40,7 +41,8 @@ interface ArrowButtonProps {
 }
 
 interface TablePaginationProps {
-  lastPage: number 
+  lastPage: number
+  reset: boolean 
   onClick: (page: number) => void
 }
 
