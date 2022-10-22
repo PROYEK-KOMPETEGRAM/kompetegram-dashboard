@@ -5,12 +5,11 @@ import { Sidebar } from "@/commons/components/Sidebar/Sidebar";
 import Logo from "../../commons/assets/logo-ktg.svg";
 import { Table } from "../components/Table/Table";
 import { MainContent } from "@/commons/layouts/MainContent/MainContent";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SearchBox } from "../components/SearchBox/SearchBox";
 import { Button } from "../components/Button/Button";
 import { TablePagination } from "../components/TablePagination/TablePagination";
 import { TableDropdown } from "../components/TableDropdown/TableDropdown";
-import { mockColumn, mockData } from "../mocks/data";
 import { getMembersData } from "../api/members";
 import { useQuery } from "@tanstack/react-query";
 
@@ -23,6 +22,37 @@ export const MembersPage = () => {
   const [keyword, setKeyword] = useState('');
   const [dataSize, setDataSize] = useState(0);
   const [lastPage, setLastPage] = useState(0);
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'No',
+        accessor: (_row: any, i: number) => {
+          return (i + (parseInt(limit) * (page - 1) + 1));
+        }
+      },
+      {
+        Header: 'NIM',
+        accessor: 'nim'
+      },
+      {
+        Header: 'Nama',
+        accessor: 'name'
+      },
+      {
+        Header: 'Program Studi',
+        accessor: 'major'
+      },
+      {
+        Header: 'Status',
+        accessor: 'status'
+      },
+      {
+        Header: 'Aksi',
+        accessor: 'action'
+      }
+    ], [limit,page]
+  )
 
   const query = useQuery(["members",page,limit,keyword], 
     () => getMembersData(page, limit, keyword), {
@@ -96,7 +126,7 @@ export const MembersPage = () => {
           <CardWrapper>
             <Table 
               show={tableAvailable} 
-              columns={mockColumn}
+              columns={columns}
               data={data}
             />
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
