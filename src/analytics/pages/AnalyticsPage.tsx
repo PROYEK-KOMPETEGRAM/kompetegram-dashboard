@@ -1,45 +1,96 @@
 import { DashboardHeader } from "@/commons/components/DashboardHeader/DashboardHeader";
-import { CardWrapper } from "@/commons/layouts/CardWrapper/CardWrapper";
 import { Stats } from "../components/Stats";
 import { FaUserAlt, FaUserShield, FaSchool, FaBuilding } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { getDepartmentsCount, getMajorsCount, getMembersCount, getVerifiedMembersCount } from "../api/stats";
+import { useEffect } from "react";
 
 export const AnalyticsPage = () => {
+  const [membersCount, setMembersCount] = useState<string | number>(0);
+  const [verifiedCount, setVerifiedCount] = useState<string | number>(0);
+  const [majorsCount, setMajorsCount] = useState<string | number>(0);
+  const [departmentsCount, setDepartmentsCount] = useState<string | number>(0);
+
+  const members = useQuery(["members"], getMembersCount, {
+    enabled: false,
+    select: (data: any) => data.data,
+    retry: 1,
+    onSuccess: (data: any) => {
+      setMembersCount(data[0].members_count);
+    }
+  })
+
+  const verified = useQuery(["verified"], getVerifiedMembersCount, {
+    enabled: false,
+    select: (data: any) => data.data,
+    retry: 1,
+    onSuccess: (data: any) => {
+      setVerifiedCount(data[0].verified_count);
+    }
+  })
+
+  const majors = useQuery(["majors"], getMajorsCount, {
+    enabled: false,
+    select: (data: any) => data.data,
+    retry: 1,
+    onSuccess: (data: any) => {
+      setMajorsCount(data[0].count);
+    }
+  })
+
+  const departments = useQuery(["departments"], getDepartmentsCount, {
+    enabled: false,
+    select: (data: any) => data.data,
+    retry: 1,
+    onSuccess: (data: any) => {
+      setDepartmentsCount(data[0].count);
+    }
+  })
+
+  useEffect(() => {
+    members.refetch();
+    verified.refetch();
+    majors.refetch();
+    departments.refetch();
+  },[])
+
   return (
     <>
       <DashboardHeader title="Statistik" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <CardWrapper >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-gray-700 shadow-sm rounded-lg lg:my-8 sm:my-4 my-2">
           <div className="flex flex-row">
             <div className="w-1 bg-blue-400 rounded-tl-lg rounded-bl-lg"/>
-            <Stats value={134} title="Jumlah Pendaftar" >
+            <Stats value={membersCount} title="Jumlah Pendaftar" >
               <FaUserAlt color="#64b5f6" size="1.2em" />
             </Stats>
           </div>
-        </CardWrapper>
-        <CardWrapper>
+        </div>
+        <div className="bg-gray-700 shadow-sm rounded-lg lg:my-8 sm:my-4 my-2">
           <div className="flex flex-row">
             <div className="w-1 bg-blue-400 rounded-tl-lg rounded-bl-lg"/>
-            <Stats value={128} title="Pendaftar Terverifikasi" >
+            <Stats value={verifiedCount} title="Pendaftar Terverifikasi" >
               <FaUserShield color="#64b5f6" size="1.5em" />
             </Stats>
           </div>
-        </CardWrapper>
-        <CardWrapper>
+        </div>
+        <div className="bg-gray-700 shadow-sm rounded-lg lg:my-8 sm:my-4 my-2">
           <div className="flex flex-row">
             <div className="w-1 bg-blue-400 rounded-tl-lg rounded-bl-lg"/>
-            <Stats value={15} title="Jumlah Program Studi" >
+            <Stats value={majorsCount} title="Jumlah Program Studi" >
               <FaSchool color="#64b5f6" size="1.5em" />
             </Stats>
           </div>
-        </CardWrapper>
-        <CardWrapper>
+        </div>
+        <div className="bg-gray-700 shadow-sm rounded-lg lg:my-8 sm:my-4 my-2">
           <div className="flex flex-row">
             <div className="w-1 bg-blue-400 rounded-tl-lg rounded-bl-lg"/>
-            <Stats value={7} title="Jumlah Fakultas" >
+            <Stats value={departmentsCount} title="Jumlah Fakultas" >
               <FaBuilding color="#64b5f6" size="1.25em" />
             </Stats>
           </div>
-        </CardWrapper>
+        </div>
       </div>
     </>
   );
