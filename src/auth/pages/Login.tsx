@@ -41,7 +41,7 @@ export const LoginPage = () => {
         type: "SET_USER",
         payload: data,
       });
-      navigate('/dashboard/members')
+      navigate('/dashboard/stats')
     }
   })
 
