@@ -8,6 +8,7 @@ import { getAccessToken, getRefreshToken } from "./commons/helpers/utils"
 import { MembersPage } from "./members/pages/MembersPage"
 import { Spinner } from "./commons/components/Spinner/Spinner"
 import Logo from "./commons/assets/logo-ktg.svg";
+import { DashboardWrapper } from "./commons/components/DashboardWrapper/DashboardWrapper"
 
 export const AppRoute = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -56,7 +57,9 @@ export const AppRoute = () => {
           <Route 
             path="members" 
             element={<ProtectedRoute children={
-              <MembersPage/>
+              <DashboardWrapper>
+                <MembersPage/>
+              </DashboardWrapper>
             }/>} 
           />
         </Route>
