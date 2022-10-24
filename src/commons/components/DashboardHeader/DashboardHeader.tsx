@@ -1,11 +1,16 @@
-export const DashboardHeader = () => {
+interface DashboardProps {
+  title?: string 
+  subtitle?: string
+}
+
+export const DashboardHeader = (props: DashboardProps) => {
   return (
     <div className="container">
       <h1 className="font-open-sans text-white text-3xl font-medium my-1">
-        Daftar Anggota
+        {props.title}
       </h1>
       <h3 className="font-open-sans text-blue-400 text-md font-regular">
-        Rekapitulasi Pendaftar Anggota Batch 3 
+        {props.subtitle}
       </h3>
     </div>
   );

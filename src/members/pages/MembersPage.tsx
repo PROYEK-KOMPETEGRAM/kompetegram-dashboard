@@ -122,7 +122,10 @@ export const MembersPage = () => {
 
   return (
     <>
-      <DashboardHeader/>
+      <DashboardHeader
+        title="Daftar Anggota"
+        subtitle="Rekapitulasi Pendaftar Anggota Batch 3"
+      />
       <CardWrapper>
         <div className="flex flex-col sm:flex-row justify-between items-center p-5">
           <SearchBox onSearch={getSearchKeyword} />

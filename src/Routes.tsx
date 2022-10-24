@@ -9,6 +9,7 @@ import { MembersPage } from "./members/pages/MembersPage"
 import { Spinner } from "./commons/components/Spinner/Spinner"
 import Logo from "./commons/assets/logo-ktg.svg";
 import { DashboardWrapper } from "./commons/components/DashboardWrapper/DashboardWrapper"
+import { AnalyticsPage } from "./analytics/pages/AnalyticsPage"
 
 export const AppRoute = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -61,6 +62,14 @@ export const AppRoute = () => {
                 <MembersPage/>
               </DashboardWrapper>
             }/>} 
+          />
+          <Route
+            path="stats"
+            element={<ProtectedRoute children={
+              <DashboardWrapper>
+                <AnalyticsPage/>
+              </DashboardWrapper>
+            }/>}
           />
         </Route>
       </Routes>

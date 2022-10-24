@@ -19,7 +19,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@auth/*": ["./src/auth/*"],
-      "@analytics/*": ["./src/analytics/*"],
+      "@analytics/*": ["src/analytics/*"],
       "@commons/*": ["./src/commons/*"],
       "@members/*": ["./src/members/*"]
     }
