@@ -31,6 +31,7 @@ export const AppRoute = () => {
   })
 
   useEffect(() => {
+    document.body.classList.add('bg-gray-900');
     if (accessToken && refreshToken) {
       query.refetch();
     } else {

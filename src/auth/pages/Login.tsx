@@ -60,10 +60,6 @@ export const LoginPage = () => {
     mutate(values);
   }
 
-  useEffect(() => {
-    document.body.classList.add('bg-gray-800');
-  },[])
-
   return (
     <div className="flex justify-center items-center h-screen w-100">
       <div className="shadow-lg rounded-2xl bg-white sm:w-3/4 

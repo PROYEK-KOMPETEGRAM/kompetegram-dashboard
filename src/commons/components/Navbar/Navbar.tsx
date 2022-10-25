@@ -29,7 +29,7 @@ export const Navbar = () => {
           className="navbar-toggler text-gray-500 border-0
             hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent
             focus:outline-none focus:ring-0 focus:shadow-none 
-            focus:no-underline" 
+            focus:no-underline md:hidden block" 
           type="button" 
           data-bs-toggle="offcanvas" 
           data-bs-target="#offcanvasExample" 
@@ -43,40 +43,14 @@ export const Navbar = () => {
           </svg>
         </button>
         <div className="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
-          <a className="
-                flex
-                items-center
-                text-gray-900
-                hover:text-gray-900
-                focus:text-gray-900
-                mt-2
-                lg:mt-0
-                mr-1
-              " href="#">
+          <a 
+            className="flex items-center text-gray-900 hover:text-gray-900 focus:text-gray-900 mt-2 lg:mt-0 mr-1" 
+            href="#">
           </a>
         </div>
         <div className="flex items-center relative">
           <div className="dropdown relative">
-            <ul className="
-              dropdown-menu
-              min-w-max
-              absolute
-              bg-white
-              text-base
-              z-50
-              float-left
-              py-2
-              list-none
-              text-left
-              rounded-lg
-              shadow-lg
-              mt-1
-              hidden
-              m-0
-              bg-clip-padding
-              border-none
-              left-auto
-              right-0
+            <ul className=" dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0
             " aria-labelledby="dropdownMenuButton1">
               <li>
                 <a 
@@ -102,41 +76,10 @@ export const Navbar = () => {
             <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortRound&accessoriesType=Wayfarers&hairColor=Brown&facialHairType=Blank&facialHairColor=Platinum&clotheType=BlazerSweater&clotheColor=PastelRed&eyeType=EyeRoll&eyebrowType=Angry&mouthType=Serious&skinColor=Light" className="rounded-full"
               style={{ height: '35px', width: '35px' }} alt="" loading="lazy" />
           </a>
-          <ul className="
-          dropdown-menu
-          min-w-max
-          absolute
-          bg-white
-          text-base
-          z-50
-          float-left
-          py-2
-          list-none
-          text-left
-          rounded-lg
-          shadow-lg
-          mt-1
-          hidden
-          m-0
-          bg-clip-padding
-          border-none
-          left-auto
-          right-0
+          <ul className=" dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0
         " aria-labelledby="dropdownMenuButton2">
             <li>
-              <a className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              font-open-sans
-              block
-              w-full
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100" 
+              <a className="dropdown-item text-sm py-2 px-4 font-normal font-open-sans block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100" 
               href="#"
               onClick={logoutHandler}
             >

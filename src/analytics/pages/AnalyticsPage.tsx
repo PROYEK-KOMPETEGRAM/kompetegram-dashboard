@@ -5,12 +5,15 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { getDepartmentsCount, getMajorsCount, getMembersCount, getVerifiedMembersCount } from "../api/stats";
 import { useEffect } from "react";
+import { Modals } from "@/commons/components/Modals/Modals";
+import { useRef } from "react";
 
 export const AnalyticsPage = () => {
   const [membersCount, setMembersCount] = useState<string | number>(0);
   const [verifiedCount, setVerifiedCount] = useState<string | number>(0);
   const [majorsCount, setMajorsCount] = useState<string | number>(0);
   const [departmentsCount, setDepartmentsCount] = useState<string | number>(0);
+  const modals: any = useRef();
 
   const members = useQuery(["members"], getMembersCount, {
     enabled: false,
@@ -48,7 +51,17 @@ export const AnalyticsPage = () => {
     }
   })
 
+  const showModal = () => {
+    const session = sessionStorage.getItem("ACK");
+    console.log(session);
+    if (!session) {
+      modals.current?.click();
+      sessionStorage.setItem("ACK","CLICK");
+    }
+  }
+
   useEffect(() => {
+    showModal();
     members.refetch();
     verified.refetch();
     majors.refetch();
@@ -57,7 +70,16 @@ export const AnalyticsPage = () => {
 
   return (
     <>
+      <Modals/>
       <DashboardHeader title="Statistik" />
+      <div 
+        ref={modals}
+        className="hidden"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Launch demo modal
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-gray-700 shadow-sm rounded-lg lg:my-8 sm:my-4 my-2">
           <div className="flex flex-row">
