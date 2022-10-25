@@ -1,5 +1,4 @@
 import { apiService } from "@/commons/config/api";
-import { getAccessToken } from "@/commons/helpers/utils";
 import { RefreshRequest, AuthResponse, LoginRequest } from "../ts/interface";
 
 apiService.defaults.headers.common["Content-Type"] = "application/json";

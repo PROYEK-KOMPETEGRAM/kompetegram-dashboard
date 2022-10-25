@@ -41,7 +41,7 @@ export const LoginPage = () => {
         type: "SET_USER",
         payload: data,
       });
-      navigate('/dashboard/members')
+      navigate('/dashboard/stats')
     }
   })
 
@@ -59,10 +59,6 @@ export const LoginPage = () => {
   const onSubmit = (values: ILoginInput) => {
     mutate(values);
   }
-
-  useEffect(() => {
-    document.body.classList.add('bg-gray-800');
-  },[])
 
   return (
     <div className="flex justify-center items-center h-screen w-100">

@@ -8,6 +8,8 @@ import { getAccessToken, getRefreshToken } from "./commons/helpers/utils"
 import { MembersPage } from "./members/pages/MembersPage"
 import { Spinner } from "./commons/components/Spinner/Spinner"
 import Logo from "./commons/assets/logo-ktg.svg";
+import { DashboardWrapper } from "./commons/layouts/DashboardWrapper/DashboardWrapper"
+import { AnalyticsPage } from "./analytics/pages/AnalyticsPage"
 
 export const AppRoute = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -29,6 +31,7 @@ export const AppRoute = () => {
   })
 
   useEffect(() => {
+    document.body.classList.add('bg-gray-900');
     if (accessToken && refreshToken) {
       query.refetch();
     } else {
@@ -56,8 +59,18 @@ export const AppRoute = () => {
           <Route 
             path="members" 
             element={<ProtectedRoute children={
-              <MembersPage/>
+              <DashboardWrapper>
+                <MembersPage/>
+              </DashboardWrapper>
             }/>} 
+          />
+          <Route
+            path="stats"
+            element={<ProtectedRoute children={
+              <DashboardWrapper>
+                <AnalyticsPage/>
+              </DashboardWrapper>
+            }/>}
           />
         </Route>
       </Routes>
