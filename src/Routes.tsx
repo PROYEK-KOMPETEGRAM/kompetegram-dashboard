@@ -8,7 +8,7 @@ import { getAccessToken, getRefreshToken } from "./commons/helpers/utils"
 import { MembersPage } from "./members/pages/MembersPage"
 import { Spinner } from "./commons/components/Spinner/Spinner"
 import Logo from "./commons/assets/logo-ktg.svg";
-import { DashboardWrapper } from "./commons/components/DashboardWrapper/DashboardWrapper"
+import { DashboardWrapper } from "./commons/layouts/DashboardWrapper/DashboardWrapper"
 import { AnalyticsPage } from "./analytics/pages/AnalyticsPage"
 
 export const AppRoute = () => {
