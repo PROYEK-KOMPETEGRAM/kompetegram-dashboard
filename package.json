@@ -1,7 +1,7 @@
 {
   "name": "kompetegram-dashboard",
   "private": true,
-  "version": "0.8.0",
+  "version": "0.9.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -16,7 +16,9 @@
     "@tanstack/react-query": "^4.12.0",
     "@tanstack/react-query-devtools": "^4.12.0",
     "axios": "^1.1.2",
+    "chart.js": "^3.9.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.37.0",
     "react-icons": "^4.6.0",

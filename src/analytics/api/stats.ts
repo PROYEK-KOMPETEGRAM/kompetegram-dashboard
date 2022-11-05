@@ -26,9 +26,23 @@ const getDepartmentsCount = async () => {
   return response.data;
 }
 
+const getTopDepartments = async () => {
+  const response = await apiService.get("/dashboard/top/departments");
+
+  return response.data;
+}
+
+const getTopMajors = async () => {
+  const response = await apiService.get("/dashboard/top/majors");
+
+  return response.data;
+}
+
 export {
   getMembersCount,
   getMajorsCount,
   getDepartmentsCount,
-  getVerifiedMembersCount
+  getVerifiedMembersCount,
+  getTopDepartments,
+  getTopMajors
 }
